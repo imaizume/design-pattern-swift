@@ -9,4 +9,4 @@
 import Foundation
 
 // Run sample for Chap 17
-RandomNumberGenerator.run()
+Chapter17.run()

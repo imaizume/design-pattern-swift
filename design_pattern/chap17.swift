@@ -12,6 +12,18 @@ extension Notification.Name {
     static let myObserver = Notification.Name("myObserver")
 }
 
+class Chapter17 {
+    public static func run() {
+        let observer1 = DigitObserver()
+        let observer2 = GraphObserver()
+        observer1.addObserver()
+        observer2.addObserver()
+        RandomNumberGenerator.execute(times: 20)
+        observer1.removeObserver()
+        observer2.removeObserver()
+    }
+}
+
 class RandomNumberGenerator {
     static func execute(times: Int) {
         for _ in 0..<times {
@@ -21,16 +33,6 @@ class RandomNumberGenerator {
                 userInfo: ["number": Int(arc4random_uniform(50))]
             )
         }
-    }
-
-    public static func run() {
-        let observer1 = DigitObserver()
-        let observer2 = GraphObserver()
-        observer1.addObserver()
-        observer2.addObserver()
-        RandomNumberGenerator.execute(times: 20)
-        observer1.removeObserver()
-        observer2.removeObserver()
     }
 }
 
