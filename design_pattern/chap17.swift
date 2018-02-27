@@ -18,19 +18,29 @@ class Chapter17 {
         let observer2 = GraphObserver()
         observer1.addObserver()
         observer2.addObserver()
-        RandomNumberGenerator.execute(times: 20)
+        NumberGenerator.executeIncremental(from: 10, to: 50, by: 5)
         observer1.removeObserver()
         observer2.removeObserver()
     }
 }
 
-class RandomNumberGenerator {
-    static func execute(times: Int) {
+class NumberGenerator {
+    static func executeRandom(times: Int) {
         for _ in 0..<times {
             NotificationCenter.default.post(
                 name: .myObserver,
                 object: nil,
                 userInfo: ["number": Int(arc4random_uniform(50))]
+            )
+        }
+    }
+
+    static func executeIncremental(from min: Int, to max: Int, by k: Int) {
+        for i in stride(from: min, to: max, by: k) {
+            NotificationCenter.default.post(
+                name: .myObserver,
+                object: nil,
+                userInfo: ["number": i]
             )
         }
     }
